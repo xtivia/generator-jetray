@@ -1,0 +1,11 @@
+<h2 style="color : blue"><img src="/o/<%=portletPath%>/images/jet.png"/>JetRay</h2>
+
+<h3>Building Javascript Portlets for Liferay DXP at <span class="<%=portletNameCleaned%>_main">jet</span> speed!!</h3>
+
+<br/>Portlet Info (<span id="<%=portletNameCleaned%>_info">Unknown</span>)<br/><br/>
+
+<script>
+window.addEventListener("load", function(){
+    document.getElementById("<%=portletNameCleaned%>_info").innerHTML = <%=portletNameCleaned%>_info();
+});
+</script>

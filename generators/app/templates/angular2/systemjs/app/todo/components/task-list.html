@@ -1,0 +1,14 @@
+<h1>My Todos ({{todoCount}})</h1>
+<ul>
+    <li *ngFor="let task of tasks" [class.selected]="task == selectedTask">
+        <a href="javascript:void(0)" (click)="select(task)">
+            {{task.name}}
+            <span [ngSwitch]="task.done">
+                <template [ngSwitchCase]="true">[Done]</template>
+                <template [ngSwitchCase]="false">[Todo]</template>
+            </span>
+        </a>
+    </li>
+</ul>
+
+<task *ngIf="selectedTask" [task]="selectedTask" (statusChanged)="calculateTodoCount()"></task>

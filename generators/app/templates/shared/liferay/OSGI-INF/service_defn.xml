@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="@@portletName" immediate="true">
+  <implementation class="com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet"/>
+  <service>
+    <provide interface="javax.portlet.Portlet"/>
+  </service>
+  <property name="javax.portlet.init-param.view-template" type="String" value="/view.jsp"/>
+  <property name="javax.portlet.security-role-ref" type="String" value="power-user,user"/>
+  <property name="javax.portlet.resource-bundle" type="String" value="content.Language"/>
+  <property name="javax.portlet.init-param.template-path" type="String" value="/"/>
+  <property name="com.liferay.portlet.instanceable" type="String" value="@@portletInstanceable"/>
+  <property name="javax.portlet.name" type="String" value="@@portletName"/>
+  <property name="javax.portlet.display-name" type="String" value="@@portletTitle"/>
+  <property name="com.liferay.portlet.display-category" type="String" value="@@portletCategory"/>
+</scr:component>

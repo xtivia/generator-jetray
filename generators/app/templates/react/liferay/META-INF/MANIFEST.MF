@@ -3,6 +3,7 @@ Bnd-LastModified: @@now
 Bundle-ManifestVersion: 2
 Bundle-Name: @@portletName
 Bundle-SymbolicName: @@portletName
+Bundle-Description: @@portletTitle
 Bundle-Version: 1.0.0
 Created-By: 1.8.0_102 (Oracle Corporation)
 Import-Package: com.liferay.portal.kernel.portlet.bridges.mvc,javax.po

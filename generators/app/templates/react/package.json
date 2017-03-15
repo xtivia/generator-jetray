@@ -19,7 +19,7 @@
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
     "gulp-babel": "^6.1.2",
-    "gulp-better-rollup": "^1.0.2",
+    "gulp-better-rollup": "^1.1.0",
     "gulp-clean": "^0.3.2",
     "gulp-rename": "^1.2.2",
     "gulp-replace-task": "^0.11.0",
@@ -30,6 +30,7 @@
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-jsx": "^1.0.3",
     "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-replace": "^1.1.1",
     "through2": "^2.0.1",
     "xml2js": "^0.4.17"
   }

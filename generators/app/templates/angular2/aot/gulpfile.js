@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     ngc = require('gulp-ngc'),
     rollup = require('gulp-better-rollup'),
     rollup_options = require('./rollup_options');
+    rollup_options.rollup = require('rollup');
 
 /**
  * Clean working directories

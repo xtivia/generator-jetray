@@ -1,6 +1,6 @@
 {
   "name": "generator-jetray",
-  "version": "1.1.0",
+  "version": "1.5.0",
   "description": "JetRay Yeoman generator for Liferay 7/DXP portlets",
   "license": "MIT",
   "main": "app/index.js",
@@ -10,9 +10,7 @@
     "email": "",
     "url": "https://github.com/xtivia/generator-jetray"
   },
-  "scripts": {
-    
-  },
+  "scripts": {},
   "files": [
     "generators"
   ],
@@ -20,9 +18,10 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "fs-extra": "^0.26.5",
-    "gulp-rename" : "^1.2.2",
-    "yeoman-generator": "^0.19.0",
-    "yosay": "^1.0.2"
+    "blu-generator": "^0.1.1",
+    "gulp-rename": "^1.2.2",
+    "rimraf": "^2.6.1",
+    "yeoman-generator": "^1.1.1",
+    "yosay": "^2.0.0"
   }
 }

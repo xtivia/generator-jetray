@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bnd-LastModified: @@now
+Bundle-ManifestVersion: 2
+Bundle-Name: @@portletTitle
+Bundle-SymbolicName: @@portletName
+Bundle-Description: @@portletTitle
+Bundle-Version: 1.0.0
+Created-By: 1.8.0_102 (Oracle Corporation)
+Import-Package: com.liferay.portal.kernel.portlet.bridges.mvc,javax.po
+ rtlet,javax.servlet.http,javax.servlet
+Private-Package: content
+Provide-Capability: osgi.service;objectClass:List<String>="javax.portl
+ et.Portlet"
+Require-Capability: osgi.extender;filter:="(&(osgi.extender=jsp.taglib
+ )(uri=http://java.sun.com/portlet_2_0))",osgi.extender;filter:="(&(os
+ gi.extender=jsp.taglib)(uri=http://liferay.com/tld/aui))",osgi.extend
+ er;filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/p
+ ortlet))",osgi.extender;filter:="(&(osgi.extender=jsp.taglib)(uri=htt
+ p://liferay.com/tld/ui))",osgi.ee;filter:="(&(osgi.ee=JavaSE)(version
+ =1.8))"
+Service-Component: OSGI-INF/service_defn.xml
+Tool: Bnd-3.1.0.201512181341
+Web-ContextPath: /@@portletPath

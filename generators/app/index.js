@@ -1,132 +1,84 @@
-'use strict';
-var yeoman = require('yeoman-generator');
+var Generator = require('yeoman-generator');
 var yosay = require('yosay');
-var fs = require('fs-extra');
-var path = require('path');
+var prompts = require('./prompts');
 var rename = require('gulp-rename');
-var exec = require('child_process').exec;
+var path = require('path');
+var rimraf = require('rimraf');
 
-//---- utilities for generating basic apps ----//
-var basic = require('./basic');
+module.exports = class extends Generator {
+  
+  initializing() {
+		this.log(yosay('Welcome to the Jetray portlet generator for \nLiferay DXP!\nVersion 1.5.0'));
+	}
+  
+  prompting() {
 
-//---- utilities for generating Angular2 apps ----//
-var angular2 = require('./angular2');
-
-//---- utilities for generating React apps ----//
-var react = require('./react');
-
-//-------- Base Generator----------//
-module.exports = yeoman.generators.Base.extend({
-	
-  prompting: function () {
-	  
-    var done = this.async();
-		
-		this.log(yosay('Welcome to the Jetray portlet generator for \nLiferay DXP!'));
-    
 		var self = this;
-		
-		// generate a random number to append to portlet name
-		// this (probably) keeps those who are just blindly hitting enter
-		// from overwriting previous efforts
 
-		var high = 9999; var low=1;
-		var randomSuffix = Math.floor(Math.random() * (high - low) + low);
-		
-		var prompts = [
-			  {
-				  required: true,
-				  name: 'portletName',
-				  message: 'Portlet Name (identifier)',
-				  default: 'org.jetray.app'+ randomSuffix.toString(),
-				  validate : function(input) {
-					  if (input.indexOf(' ') != -1) {
-						  return "Spaces are not permitted in the name."
-					  } else return true;
-				  }
-			  },			  
-			  {
-				  required: true,
-				  name: 'portletTitle',
-				  message: 'Portlet Title',
-				  default: 'Sample Jetray Portlet'
-			  },	  
-			  {
-				  required: true,
-				  name: 'portletCategory',
-				  message: 'Portlet Category',
-				  default: 'Sample Jetray Portlets'
-			  },
-        {
-				  required: true,
-				  name: 'framework',
-				  type: 'list',
-				  message: 'JS Framework?',
-          choices: ['Basic','Angular2','React'],
-				  default: 'Basic'
-			  },
-        {
-				  required: true,
-				  name: 'buildsys',
-				  type: 'list',
-				  message: 'Primary build system?',
-          choices: ['npm','gradle'],
-				  default: 'npm'
-			  }
-		];
+		return this.prompt(prompts)
+			.then((answers) => {
+				self.props = answers;
+				self.props.portletInstanceable = 'false';
+				self.props.appFile = 'index.html';
+				self.props.portletPath = self.props.portletName;
+				self.props.portletNameCleaned = self.props.portletName.replace(/\./g,'_');
+				self.config.set(self.props);
+			});
+	}
 
-		// --- set up Angular2 prompts ----
-		angular2.addPrompts(prompts);
-		
-		this.prompt(prompts, function (props) {
-		  this.props = props;
-	      done();
-		}.bind(this));
-  },
+	writing() {
+  
+		this.fs.copy(this.templatePath('jetdb/*.*'),this.destinationPath('jetdb'));
+    
+		// for some reason the blu-generator mangles the copying of binary files
+		// so if this is a gradle build we need to recopy any JARs from the main
+		// app templates
+		if (this.props.buildsys == 'gradle') {
+      this.fs.copy(this.templatePath('buildlibs/deploy.jar'),this.destinationPath('buildlibs/deploy.jar'));
+		}
 
-  writing: {
-	  
-    app: function () {
+    this.composeWith(require.resolve('../' + this.props.buildsys + '_common'),this.props);
 
-      // set overwrite mode so that framework-specific logic can overwrite base files
-      this.conflicter.force = true;
-				  	  	  
-      this.props.portletInstanceable = 'false';
-      this.props.appFile = 'index.html';
-      this.props.portletPath = this.props.portletName;
-      this.props.portletNameCleaned = this.props.portletName.replace(/\./g,'_');
-      this.config.set(this.props);
+    var self = this;
 
-      this.registerTransformStream(rename(function(path) {
-        if (path.extname == ".ejs") path.extname = '.js';
-      }));
+    // some wankiness since mem-fs move doesnt work very well. reassign base
+		// src files from src/main/ui to base destination when targeting npm
+    if (this.props.buildsys == 'npm') {
+			this.registerTransformStream(rename(function (fpath) {
+          // Windows?
+			  	if (fpath.dirname.indexOf('src\\main\\ui') == 0) {
+            fpath.dirname = fpath.dirname.replace('src\\main\\ui', '.');
+					} else {
+              // bash?
+              if (fpath.dirname.indexOf('src/main/ui') == 0) {
+                fpath.dirname = fpath.dirname.replace('src/main/ui', '.');
+							}
+					}
+					return path;
+			}));
+	  }
 
-      //------ JSON DB stuff -------------------------------------
-      this.fs.copy(this.templatePath('jetdb/**/*'), this.destinationPath('jetdb'));
+	  this.composeWith(require.resolve('../' + this.props.framework),this.props);
+	}
 
-      // -------- Setup the basic implementation; parts can be overridden by other frameworks-------
-      basic.generate(this);
+	install() {
 
-      // -------- Angular 2 stuff ----------------------------------------------
-      if (this.props.framework == 'Angular2') {
-        angular2.generate(this);
-      } 
-      
-	  // -------- React stuff ----------------------------------------------
-      if (this.props.framework == 'React') {
-          react.generate(this);
-      }
-    }
-  },
+		// related to janky code above--even if we rename the files the original
+		// gradle style directories (src/main/ui/...) are still around so we need to 
+    // clean up those (empty) gradle-esque directories
+	  if (this.props.buildsys == 'npm') {
+       rimraf('./src/main', function (err) { 
+				 if (err) throw err; 
+			 });
+		}
 
-  install: function () {
-    this.log("Initializing the project--this may take a few minutes...");
+		this.log("Initializing the project--this may take a few minutes...");
     if (this.props.buildsys == 'npm') {
 	    this.npmInstall();
     } else {
       var done = this.async();
-      this.spawnCommand('gradle',['nodeSetup','npmInstall']).on('close', done);
+			this.spawnCommand('gradle',['npmInstall']).on('close', done);
     }
-  }
-  
-});
+	}
+
+}

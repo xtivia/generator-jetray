@@ -1,2 +1,5 @@
+build
+dist
+typings
 node_modules
 *.iml

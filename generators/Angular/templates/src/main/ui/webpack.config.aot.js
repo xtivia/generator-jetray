@@ -35,6 +35,4 @@ module.exports = {
     ],
     noParse: /path.join(__dirname,'node_modules', 'angular2', 'bundles')/
   },
-  // enable this setting if you want to see a source map for your AOT-based bundle
-  devtool: 'source-map'
 };

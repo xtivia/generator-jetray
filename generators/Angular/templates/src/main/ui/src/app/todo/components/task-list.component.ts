@@ -22,7 +22,7 @@ export class TaskListComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("Todo component (AOT) initialized with " + this.tasks.length + " tasks.");
+        console.log("Todo component initialized with " + this.tasks.length + " tasks.");
     }
 
     calculateTodoCount() {

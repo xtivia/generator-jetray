@@ -5,22 +5,24 @@ import {AppComponent} from "./app.component";
 import {TaskListComponent} from "./todo/components/task-list.component";
 import {AboutComponent} from "./about/components/about.component";
 import {TaskComponent} from "./todo/components/task.component";
+import {StaffListComponent} from "./staff/components/staff-list.component";
 
-//import {routing, appRoutingProviders} from './app.routing';
 import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 import {UIRouterModule} from "ui-router-ng2";
 import {uiRouterConfigFn} from "./app.routerconfig";
 
-let homeState  = { name: 'home',  url: '',       component: TaskListComponent }; 
+let homeState  = { name: 'home',  url: '',        component: TaskListComponent }; 
 let tasksState = { name: 'tasks', url: '/tasks',  component: TaskListComponent }; 
 let aboutState = { name: 'about', url: '/about',  component: AboutComponent };
+let staffState = { name: 'staff', url: '/staff',  component: StaffListComponent };
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
-        //routing
-        UIRouterModule.forRoot({ states: [ homeState, tasksState, aboutState ], 
+        HttpModule,
+        UIRouterModule.forRoot({ states: [ homeState, tasksState, aboutState, staffState ], 
                                  config: uiRouterConfigFn, 
                                  useHash: true })
     ],
@@ -28,11 +30,10 @@ let aboutState = { name: 'about', url: '/about',  component: AboutComponent };
         AppComponent,
         TaskComponent,
         TaskListComponent,
-        AboutComponent
+        AboutComponent,
+        StaffListComponent,
     ],
-    providers: [
-        //appRoutingProviders
-    ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

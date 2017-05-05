@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 module.exports = class extends Generator {
   
   initializing() {
-		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.5.1'));
+		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.6.0'));
 	}
   
   prompting() {

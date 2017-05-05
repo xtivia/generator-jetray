@@ -21,7 +21,8 @@ module.exports = {
       manifest: require(path.join(__dirname,'ng_runtime','ng_runtime-manifest.json'))
     }),
     // suppress Typescript warnings when building Angular into vendor package
-    new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,appRoot),
+    //new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,appRoot),
+    new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/,appRoot),
  ],
   resolve: {
     extensions: ['*','.ts', '.js']

@@ -4,8 +4,8 @@
         <a href="javascript:void(0)" (click)="select(task)">
             {{task.name}}
             <span [ngSwitch]="task.done">
-                <template [ngSwitchCase]="true">[Done]</template>
-                <template [ngSwitchCase]="false">[Todo]</template>
+                <ng-template [ngSwitchCase]="true">[Done]</ng-template>
+                <ng-template [ngSwitchCase]="false">[Todo]</ng-template>
             </span>
         </a>
     </li>

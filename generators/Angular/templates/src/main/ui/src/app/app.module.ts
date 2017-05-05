@@ -9,7 +9,7 @@ import {StaffListComponent} from "./staff/components/staff-list.component";
 
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import {UIRouterModule} from "ui-router-ng2";
+import {UIRouterModule} from "@uirouter/angular";
 import {uiRouterConfigFn} from "./app.routerconfig";
 
 let homeState  = { name: 'home',  url: '',        component: TaskListComponent }; 

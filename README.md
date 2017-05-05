@@ -17,5 +17,7 @@ TL;DR
 
 7. when ready, run 'gulp deploy' to push to Liferay
 
-NOTE: version 1.6.0 migrates the Angular support to Angular 4 and moves the UI-Router package to @uirouter/angular as well.
+NOTE: beginning with version 1.6.0 Angular support has been migrated to Angular 4 and moves the UI-Router package to @uirouter/angular as well.
+
+The version that supports Angular 2 is still provided as a Git 1.5.1 tag here.
 

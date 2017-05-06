@@ -18,18 +18,21 @@ export class UserList extends React.Component {
               if (err || !res.ok) {
                   throw new Error("Bad response from server");
               }
-              let sorted_users = sortBy(res.body, function(o) { return o.username; });
+              let sorted_users = sortBy(res.body, function(o) { return o.email; });
               self.setState({users: sorted_users});
           });
     };
  
   render() {
     let workers = this.state.users.map((user,index) => {
-      return <li key={index}>{user.username}--{user.name}</li>;
+      return <tr key={index}><td>{user.email}</td><td>{user.name}</td></tr>;
     });
     return(
       <div>
-        <ul>{workers}</ul>
+        <table className="table table-bordered">
+        <thead><tr><th>Email</th><th>Name</th></tr></thead>
+        <tbody>{workers}</tbody>
+        </table>
       </div>
     );
   }

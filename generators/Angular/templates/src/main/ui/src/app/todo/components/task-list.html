@@ -1,11 +1,11 @@
-<h1>My Work Items ({{todoCount}})</h1>
-<ul>
-    <li *ngFor="let task of tasks" [class.selected]="task == selectedTask">
+<h4><b>My Work Items ({{todoCount}})</b></h4>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let task of tasks" [class.selected]="task == selectedTask">
         <a href="javascript:void(0)" (click)="select(task)">
             {{task.name}}
             <span [ngSwitch]="task.done">
                 <ng-template [ngSwitchCase]="true">[Done]</ng-template>
-                <ng-template [ngSwitchCase]="false">[Todo]</ng-template>
+                <ng-template [ngSwitchCase]="false">[Pending]</ng-template>
             </span>
         </a>
     </li>

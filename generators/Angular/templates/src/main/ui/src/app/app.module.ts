@@ -12,7 +12,6 @@ import {HttpModule} from "@angular/http";
 import {UIRouterModule} from "@uirouter/angular";
 import {uiRouterConfigFn} from "./app.routerconfig";
 
-let homeState  = { name: 'home',  url: '',        component: TaskListComponent }; 
 let tasksState = { name: 'tasks', url: '/tasks',  component: TaskListComponent }; 
 let aboutState = { name: 'about', url: '/about',  component: AboutComponent };
 let staffState = { name: 'staff', url: '/staff',  component: StaffListComponent };
@@ -22,7 +21,7 @@ let staffState = { name: 'staff', url: '/staff',  component: StaffListComponent 
         BrowserModule,
         FormsModule,
         HttpModule,
-        UIRouterModule.forRoot({ states: [ homeState, tasksState, aboutState, staffState ], 
+        UIRouterModule.forRoot({ states: [ tasksState, aboutState, staffState ], 
                                  config: uiRouterConfigFn, 
                                  useHash: true })
     ],

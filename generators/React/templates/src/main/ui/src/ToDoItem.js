@@ -21,7 +21,8 @@ export class NewTodoItem extends React.Component {
   render(){
     return (
       <form onSubmit={this.onSubmit}>
-        To Do?: <input ref="itemName" type="text" />
+        <label>New Task</label>
+        <input className="form-control" ref="itemName" type="text" />
       </form>);
   }
 

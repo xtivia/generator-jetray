@@ -1,8 +1,10 @@
 <section>
-    <nav>
-      <a uiSref="tasks" uiSrefActive="active">Tasks</a>
-      <a uiSref="about" uiSrefActive="active">About</a>
-      <a uiSref="staff" uiSrefActive="active">Staff</a>
-      <ui-view></ui-view>
+    <nav class='navbar navbar-default'>
+      <ul class='nav nav-pills'>
+	      <li class="nav-item" uiSrefActive="active"><a class="nav-link" uiSref="tasks" >Tasks</a></li>
+	      <li class="nav-item" uiSrefActive="active"><a class="nav-link" uiSref="about">About</a></li>
+	      <li class="nav-item" uiSrefActive="active"><a class="nav-link" uiSref="staff">Staff</a></li>
+      </ul>
     </nav>
+    <ui-view></ui-view>
 </section>

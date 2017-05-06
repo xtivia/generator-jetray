@@ -1,6 +1,8 @@
-<h1>The Staff</h1>
-<ul>
-    <li *ngFor="let member of staff" >      
-        {{member.name}},{{member.username}},{{member.email}}
-    </li>
-</ul>
+<table class="table table-bordered">
+  <thead><tr><th>UserId</th><th>Name</th></tr></thead>
+  <tbody>
+    <tr *ngFor="let member of staff" >      
+        <td>{{member.username}}</td><td>{{member.name}}</td>
+    </tr>
+  </tbody>  
+</table>

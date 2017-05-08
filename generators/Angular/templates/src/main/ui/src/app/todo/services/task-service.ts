@@ -5,9 +5,9 @@ import {Task} from "../models/task";
 export class TaskService {
 
     private tasks:Array<Task> = [
-        new Task("Task #1", false),
-        new Task("Task #2", false),
-        new Task("Task #3", false),
+        new Task("Clean out the garage", false),
+        new Task("Repaint the washroom", false),
+        new Task("Unpack new arrivals in storeroom", false),
     ];
 
     getTasks():Array<Task> {

@@ -1,0 +1,49 @@
+---
+title: Jetray
+---
+
+{% include header.html %}
+
+<!-- Landing Area -->
+<div class="banner banner-full-height overlay-black">
+  <div class="container text-center">
+    <h1><img src="img/jet2.png" width="40" height="40" opacity="0.0"></img>Jetray</h1>
+    <h5>Building Angular and React portlets for Liferay DXP at <strong><i>jet speed!</i></strong></h5>
+    <br>
+    <img src="img/react_logo.png" width="48" height="48" opacity="0.0"></img>
+    <img src="img/liferay_logo.png" width="48" height="48" opacity="0.0"></img>
+    <img src="img/angular.png" width="48" height="48" opacity="0.0"></img>
+    <br><br><br><br>
+    <p><a class="btn btn-white btn-xl btn-outline" href="#overview" role="button"> Read More </a></p>
+  </div>
+
+  <ul class="social-icons">
+    <li><a target="_blank" href="https://twitter.com/xtivia"><i class="fa fa-twitter"></i></a></li>
+    <li><a target="_blank" href="https://www.facebook.com/Xtivia/"><i class="fa fa-facebook"></i></a></li>
+    <li><a target="_blank" href="https://www.linkedin.com/company/xtivia"><i class="fa fa-linkedin"></i></a></li>
+    <li><a target="_blank" href="https://www.youtube.com/user/XTIVIA"><i class="fa fa-youtube"></i></a></li>
+  </ul>
+</div>
+<!-- END Landing Area -->
+
+<main class="container">
+  <div class="row">
+    {% include _landing/sidebar.html %}
+    <!-- Main content -->
+    <article class="col-md-9 col-sm-9 main-content" role="main">
+      <header id="overview">
+      {% capture overview %}{% include _landing/overview.md %}{% endcapture %}
+      {{ overview | markdownify }}
+      </header>
+      <section>
+        {% include _landing/features.html %}
+      </section>
+      <section>
+         {% include _landing/getting_started.html %}
+      </section>
+    </article>
+    <!-- END Main content -->
+  </div>
+</main>
+
+{% include footer.html %}

@@ -19,5 +19,6 @@ TL;DR
 
 NOTE: beginning with version 1.6.0 Angular support has been migrated to Angular 4 and moves the UI-Router package to @uirouter/angular as well.
 
-The version that supports Angular 2 is still provided as a Git 1.5.1 tag here.
+For those not ready to move to Angular 4, the version that supports Angular 2 is still provided
+as a Git 1.5.1 tag here.
 

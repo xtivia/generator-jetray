@@ -1,0 +1,13 @@
+---
+title: JetRay
+email: mfreeman@xtivia.com
+baseurl: ''
+url: ''
+markdown: kramdown
+include: ["docs"]
+defaults:
+  -
+    scope:
+      path: "docs"
+    values:
+      layout: "docs"

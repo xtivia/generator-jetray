@@ -1,0 +1,22 @@
+---
+title: Jetray Docs
+---
+
+{% include docs_header.html %}
+
+<main class="container">
+  <div class="row">
+    {% include docs_sidebar.html %}
+    <!-- Main content -->
+    <article class="col-md-10 col-sm-10 main-content" role="main">
+      <section>
+      {% capture contents %}{{content}} {% endcapture %}
+      {{ contents | markdownify }}
+      </section>
+    </article>
+  </div>
+ </main> 		
+
+{% include docs_footer.html %}
+
+

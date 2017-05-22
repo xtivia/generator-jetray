@@ -1,0 +1,15 @@
+---
+
+---
+
+### Framework Runtimes
+
+One of the unique challenges in adapting the use of frameworks such as Angular and React to a portal environment is that you essentially end up with multiple Single Page Applications on the same browser page. These applications are composed of both framework code as well as custom application code, where in many cases the size of the framework code dwarfs that of the application code.
+
+Normally this is not an issue and in some ways is typical for modern applications (e.g., the Spring framework in Java). However a special challenge arises in the portal space because if we develop, say multiple Angular portlets targeting a single portal page, having each of those portlets include its own private copy of the (rather large) Angular core framework is at best inefficient, and at worst non-functional due to technical collisions of various sorts.
+
+To deal with this particular problem, Jetray introduces the concept of "framework runtimes". For both Angular and React we create a separate webpack configuration to "build" the core components of each framework in an offline fashion to create a single copy of an aggregate JavaScript file that can be included only once on page and used by all of the portlets on that page. This runtime is then included in each project created by the Jetray yeoman generator, along with a small specialized "portlet loader" Javascript file included with each portlet that ensures that the appropriate framework runtime is only loaded once per page.
+
+While Jetray provides a "starter" version of the framework runtime for both Angular and React, it is intended that clients and users of the toolkit can adapt the generation of the framework runtimes to their own particular needs. For example, some elements included in the default framework runtime may not be required by certain applications and will only create unnecessary cruft and weight in the download size of the file. In other cases, clients may find that they are using the same custom application components across multiple pages and may want to extend the generated framework runtime to include those "common components" to reap the benefit of having them only included once per page regardless of how many times a portlet on the page makes use of them.
+
+To see the projects that create the respective framework runtimes, or to use them to create your own customized version, please refer to them here ([Angular](https://github.com/xtivia/jetray-runtime-angular) and [React](https://github.com/xtivia/jetray-runtime-react)). The toolkit currently outputs the framework runtime in either the *ng_runtime* or the *react_runtime* folder of your generated Jetray project. For performance and optimization, the copies of the framework runtimes included in generated projects are minified in both production and development modes.

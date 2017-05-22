@@ -1,0 +1,41 @@
+
+<h2 id="getstarted">Getting started</h2>
+<p>The following is a quick outline of the steps needed to generate an Angular or React portlet using Jetray:
+</p>
+<br>
+<ul class="step-text">
+  <li>
+    <h5>Clone the git repository</h5>
+    <p>Navigate to the <a target="_blank" href="https://github.com/xtivia/generator-jetray">Jetray</a> repository on
+    GitHub and clone the project into a local directory in your local filesystem.</p>
+  </li>
+
+  <li>
+    <h5>Install the required npm packages</h5>
+    <p>Ensure that you have installed node, and also have installed the node packages <i>yo</i> and <i>gulp-cli</i> globally</p>
+  </li>
+
+  <li>
+    <h5>Make the freshly cloned directory (a Yeoman generator) visible to NodeJS and Yeoman</h5>
+    <p>cd into the freshly cloned directory from step #1 and run '<b>npm link</b>'.</p>
+  </li>
+
+  <li>
+    <h5>Create your new portlet</h5>
+    <p>Create a new portlet project directory, cd into it, and run '<b>yo jetray</b>' and answer the prompts.</p>
+  </li>
+
+  <li>
+    <h5>Build your new portlet</h5>
+    <p>After portlet generation and the installation of required packages (step 4) is complete, simply run '<b>gulp build</b>'.</p>
+  </li>
+  <li>
+    <h5>Deploy your new portlet to Liferay DXP</h5>
+    <p>Run '<b>gulp deploy</b>', then login to Liferay and add your shiny new portlet to a page. It's that easy!</p>
+  </li>
+   <li>
+    <h5>Edit the sample portlet to meet your requirements</h5>
+    <p>Study the generated example portlet and change it as needed to meet your own specific requirements. Then repeat
+    the '<b>gulp build</b>' and '<b>gulp deploy</b>' steps as needed.</p>
+  </li>
+</ul>

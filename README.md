@@ -1,5 +1,5 @@
-# generator-jetray
-Yeoman generator for Javascript portlets on Liferay DXP
+# Jetray
+Yeoman generator for React and Angular portlets on Liferay DXP
 
 TL;DR
 

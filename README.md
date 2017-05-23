@@ -1,7 +1,7 @@
 # Jetray
 Yeoman generator for React and Angular portlets on Liferay DXP
 
-[Website: ](https://xtivia.github.io/generator-jetray/)
+[Website ](https://xtivia.github.io/generator-jetray)
 
 TL;DR
 

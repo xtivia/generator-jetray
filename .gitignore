@@ -4,3 +4,5 @@ typings
 node_modules
 *.iml
 .idea
+.project
+.settings

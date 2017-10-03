@@ -2,6 +2,7 @@ const buildsys = '<%=buildsys%>';
 var config = require('./gulp-config')[buildsys];
 
 var gulp = require('gulp'),
+    path = require('path'),
     clean = require('gulp-clean'),
     sequence = require('gulp-sequence'),
     rename = require("gulp-rename"),
@@ -121,6 +122,7 @@ gulp.task('watch', (cb) => {
   webpackconfig.watch = true;
   webpackconfig.cache = true;
   webpackconfig.bail = false;
+  webpackconfig.output.path = path.resolve(config.build_dir);
   
   webpack(webpackconfig, function(error, stats) {
     if (error) {

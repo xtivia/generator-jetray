@@ -1,16 +1,18 @@
 buildscript {
+  repositories {
+    mavenCentral() 
+  }
   dependencies {
-    classpath files('buildlibs/deploy.jar')
+  	classpath 'biz.aQute.bnd:biz.aQute.bnd.gradle:+'
   }
 }
 
 plugins {
   id "com.moowork.gulp" version "1.1.1"
-  id 'org.dm.bundle' version "0.9.0"
 }
 
 apply plugin: 'java'
-apply plugin: 'org.dm.bundle'
+apply plugin: 'biz.aQute.bnd.builder'
 apply plugin: 'com.moowork.gulp'
 
 repositories {
@@ -46,7 +48,7 @@ if (uimode && uimode.toString().toLowerCase() == 'prod') {
 // set the directories for node/npm/gulp tasks
 node {
   download = downloadNode
-  version = '6.10.0'
+  version = '8.9.3'
   workDir = file("nodejs")
   nodeModulesDir = file("src/main/ui")
 }
@@ -54,22 +56,41 @@ gulp {
   workDir = file("src/main/ui")
 }
 
+// Create a dynamic 'ui_build' task that will trigger the UI (gulp)
+// build if it hasn't been executed yet. Primary purpose is
+// to ensure that an initial invocation of 'gradle jar'
+// from inside the gulp build environment uses a full set
+// of resources
+tasks.addRule("Run UI Build as needed") { String taskName ->
+	if (taskName == "ui_build") {
+		 if (!file('build/ui_build').exists()) {
+		   task ui_build {
+		   	    dependsOn (ui_builder_task)
+		   	    doLast {
+	    		    println "Invoked gulp-based UI build"
+	    	    }
+		   }
+	    } else {
+	    	task ui_build {
+	    		doLast {
+	    		    println "Bypassed gulp-based UI build task"
+	    	    }
+	    	}
+	    }
+	}
+}
+
 // override the built-in processResources
 // pull in the resources (JS, CSS, HTML, JSP etc.) that compose the app
 // run the UI build on-demand if needed
 processResources {
-  mustRunAfter ui_builder_task
-  actions = []
-	doLast {
-    // ensure gulp build has run at least once
-	  if (!file('build/ui_build').exists()) {
-		  ui_builder_task.execute()
-	  }
- 	  copyResources.execute();
-	}
+    dependsOn ui_build
+    dependsOn 'copyResources'
+    actions = []
 }
 
 task copyResources(type: Copy) {
+  mustRunAfter ui_build	
   def filterProps = [portletName : portletName, portletPath : "/${portletName}" ]
   into ('build/resources/main')
 	into('') { 
@@ -93,31 +114,33 @@ task copyResources(type: Copy) {
 processResources.outputs.upToDateWhen { false }
 jar.outputs.upToDateWhen { false }
 
-// create the OSGi bundle (JAR)
-bundle {
-  instructions << [
-		'Bundle-Version'      : '1.0.0',
-    'Bundle-Name'         : portletTitle,
-		'Bundle-SymbolicName' : portletName,
-		'Bundle-Description'  : portletTitle,
-		'-metatype'           : '*',
-		'-buildpath'          : 'osgi.annotation; version=6.0.1,osgi.core; version=6.0,osgi.cmpn; version=6.0',
-		'Import-Package'      : 'javax.servlet.http,javax.servlet,*',
-		'Provide-Capability'  : 'osgi.service;objectClass:List<String>="javax.portlet.Portlet',
-		'Web-ContextPath'     : "/${portletName}",
-		'Require-Capability'  :  'osgi.extender;filter:="(&(osgi.extender=jsp.taglib' +
-														 ')(uri=http://java.sun.com/portlet_2_0))",osgi.extender;filter:="(&(os' +
-														 'gi.extender=jsp.taglib)(uri=http://liferay.com/tld/aui))",osgi.extend' +
-														 'er;filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/p' +
-														 'ortlet))",osgi.extender;filter:="(&(osgi.extender=jsp.taglib)(uri=htt' +
-														 'p://liferay.com/tld/ui))",osgi.ee;filter:="(&(osgi.ee=JavaSE)(version' +
-														 '=1.8))"'
-  ]
-}
-
 build.dependsOn(ui_builder_task)
 clean.dependsOn(gulp_clean)
 
 task deploy doFirst {
-    new Deployer().deploy(jar.archivePath)
+    new Deployer().deploy(jar.archivePath,true)
+}
+
+jar {
+    manifest {
+        attributes(
+			'Bundle-Version'      : '1.0.0',
+	        'Bundle-Name'         : portletTitle,
+			'Bundle-SymbolicName' : portletName,
+			'Bundle-Description'  : portletTitle,
+			'-metatype'           : '*',
+			'-buildpath'          : 'osgi.annotation; version=6.0.1,osgi.core; version=6.0,osgi.cmpn; version=6.0',
+			'Import-Package'      : 'javax.servlet.http,javax.servlet,*',
+			'Provide-Capability'  : 'osgi.service;objectClass:List<String>="javax.portlet.Portlet',
+			'Web-ContextPath'     : "/${portletName}",
+			'Require-Capability'  :  'osgi.extender;filter:="(&(osgi.extender=jsp.taglib' +
+									 ')(uri=http://java.sun.com/portlet_2_0))",osgi.extender;filter:="(&(os' +
+									 'gi.extender=jsp.taglib)(uri=http://liferay.com/tld/aui))",osgi.extend' +
+									 'er;filter:="(&(osgi.extender=jsp.taglib)(uri=http://liferay.com/tld/p' +
+									 'ortlet))",osgi.extender;filter:="(&(osgi.extender=jsp.taglib)(uri=htt' +
+									 'p://liferay.com/tld/ui))",osgi.ee;filter:="(&(osgi.ee=JavaSE)(version' +
+									 '=1.8))"'
+
+        )
+    }
 }

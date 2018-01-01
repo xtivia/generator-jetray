@@ -16,7 +16,7 @@
   "devDependencies": {
     "babel-core": "^6.24.0",
     "babel-loader": "^6.4.1",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.16.0",
     "gogo-shell": "^0.0.5",
     "gulp": "^3.9.1",

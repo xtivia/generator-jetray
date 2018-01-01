@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 module.exports = class extends Generator {
   
   initializing() {
-		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.6.0'));
+		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.7.0'));
 	}
   
   prompting() {
@@ -28,22 +28,19 @@ module.exports = class extends Generator {
 
 	writing() {
   
-		this.fs.copy(this.templatePath('jetdb/*.*'),this.destinationPath('jetdb'));
-    
 		// for some reason the blu-generator mangles the copying of binary files
 		// so if this is a gradle build we need to recopy any JARs from the main
 		// app templates
-		if (this.props.buildsys == 'gradle') {
-      this.fs.copy(this.templatePath('buildlibs/deploy.jar'),this.destinationPath('buildlibs/deploy.jar'));
-		}
+		this.fs.copy(this.templatePath('jetdb/*.*'),this.destinationPath('jetdb'));
+		
 
-    this.composeWith(require.resolve('../' + this.props.buildsys + '_common'),this.props);
+	    this.composeWith(require.resolve('../' + this.props.buildsys + '_common'),this.props);
 
-    var self = this;
+	    var self = this;
 
-    // some wankiness since mem-fs move doesnt work very well. reassign base
+        // some wankiness since mem-fs move doesnt work very well. reassign base
 		// src files from src/main/ui to base destination when targeting npm
-    if (this.props.buildsys == 'npm') {
+        if (this.props.buildsys == 'npm') {
 			this.registerTransformStream(rename(function (fpath) {
           // Windows?
 			  	if (fpath.dirname.indexOf('src\\main\\ui') == 0) {
@@ -56,7 +53,7 @@ module.exports = class extends Generator {
 					}
 					return path;
 			}));
-	  }
+	    }
 
 	  this.composeWith(require.resolve('../' + this.props.framework),this.props);
 	}

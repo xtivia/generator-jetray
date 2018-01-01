@@ -5,19 +5,15 @@ Yeoman generator for React and Angular portlets on Liferay DXP
 
 TL;DR
 
-1. clone this repository...
+1. make sure you have node installed, and then packages yo and gulp-cli installed globally via npm...
 
-2. make sure you have yo and gulp-cli installed globally via npm...
+2. run 'npm i -g xtivia/generator-jetray'
 
-3. cd into the cloned directory....
+3. create a new portlet project directory, cd into it, and run 'yo jetray' and follow the prompts
 
-4. run 'npm link'
+4. run 'gulp build' 
 
-5. then create a new portlet project directory, cd into it, and run 'yo jetray' and follow prompts
-
-6. run 'gulp build' 
-
-7. when ready, run 'gulp deploy' to push to Liferay
+5. when ready, run 'gulp deploy' to push to Liferay
 
 NOTE: beginning with version 1.6.0 Angular support has been migrated to Angular 4 and moves the UI-Router package to @uirouter/angular as well.
 

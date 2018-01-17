@@ -12,13 +12,13 @@ module.exports = [
                 return "Spaces are not permitted in the ID."
             } else return true;
         }
-    },			  
+    },
     {
         required: true,
         name: 'portletTitle',
         message: 'Portlet Title',
         default: 'Sample Jetray Portlet'
-    },	  
+    },
     {
         required: true,
         name: 'portletCategory',
@@ -32,6 +32,16 @@ module.exports = [
         message: 'JS Framework?',
         choices: ['Angular','React'],
         default: 'Angular'
+    },
+    {
+        required: true,
+        name: 'sassSupport',
+        type: 'confirm',
+        message: 'Include support for SASS (.scss)?',
+        default: false,
+        when: function (response) {
+           return response.framework == 'Angular';
+        }
     },
     {
         required: true,

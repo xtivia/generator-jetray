@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 module.exports = class extends Generator {
   
   initializing() {
-		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.7.0'));
+		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.7.2'));
 	}
   
   prompting() {
@@ -60,22 +60,22 @@ module.exports = class extends Generator {
 
 	install() {
 
-		// related to janky code above--even if we rename the files the original
-		// gradle style directories (src/main/ui/...) are still around so we need to 
-    // clean up those (empty) gradle-esque directories
-	  if (this.props.buildsys == 'npm') {
-       rimraf('./src/main', function (err) { 
+	    // related to janky code above--even if we rename the files the original
+	    // gradle style directories (src/main/ui/...) are still around so we need to 
+        // clean up those (empty) gradle-esque directories
+	    if (this.props.buildsys == 'npm') {
+            rimraf('./src/main', function (err) { 
 				 if (err) throw err; 
-			 });
+			});
 		}
 
 		this.log("Initializing the project--this may take a few minutes...");
-    if (this.props.buildsys == 'npm') {
-	    this.npmInstall();
-    } else {
-      var done = this.async();
-			this.spawnCommand('gradle',['npmInstall']).on('close', done);
-    }
+	    if (this.props.buildsys == 'npm') {
+		    this.npmInstall([],{ 'no-optional': true });
+	    } else {
+	      var done = this.async();
+				this.spawnCommand('gradle',['npmInstall']).on('close', done);
+	    }
 	}
 
 }

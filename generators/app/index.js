@@ -7,8 +7,8 @@ var rimraf = require('rimraf');
 
 module.exports = class extends Generator {
   
-  initializing() {
-		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.7.2'));
+    initializing() {
+		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.7.3'));
 	}
   
   prompting() {
@@ -32,7 +32,6 @@ module.exports = class extends Generator {
 		// so if this is a gradle build we need to recopy any JARs from the main
 		// app templates
 		this.fs.copy(this.templatePath('jetdb/*.*'),this.destinationPath('jetdb'));
-		
 
 	    this.composeWith(require.resolve('../' + this.props.buildsys + '_common'),this.props);
 
@@ -42,12 +41,12 @@ module.exports = class extends Generator {
 		// src files from src/main/ui to base destination when targeting npm
         if (this.props.buildsys == 'npm') {
 			this.registerTransformStream(rename(function (fpath) {
-          // Windows?
+                // Windows?
 			  	if (fpath.dirname.indexOf('src\\main\\ui') == 0) {
-            fpath.dirname = fpath.dirname.replace('src\\main\\ui', '.');
-					} else {
-              // bash?
-              if (fpath.dirname.indexOf('src/main/ui') == 0) {
+                    fpath.dirname = fpath.dirname.replace('src\\main\\ui', '.');
+				} else {
+                // bash?
+                if (fpath.dirname.indexOf('src/main/ui') == 0) {
                 fpath.dirname = fpath.dirname.replace('src/main/ui', '.');
 							}
 					}
@@ -71,7 +70,7 @@ module.exports = class extends Generator {
 
 		this.log("Initializing the project--this may take a few minutes...");
 	    if (this.props.buildsys == 'npm') {
-		    this.npmInstall([],{ 'no-optional': true });
+		    this.npmInstall([],{ 'no-optional': true, "loglevel": "error" });
 	    } else {
 	      var done = this.async();
 				this.spawnCommand('gradle',['npmInstall']).on('close', done);

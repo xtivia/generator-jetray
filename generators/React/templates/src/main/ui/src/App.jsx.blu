@@ -43,5 +43,5 @@ ReactDOM.render(
       <UIView/>
     </div>
   </UIRouter>,
-  document.getElementById('@@portletNameCleaned')
+  document.getElementById('<%=portletNameCleaned%>')
 );

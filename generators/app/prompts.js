@@ -30,7 +30,7 @@ module.exports = [
         name: 'framework',
         type: 'list',
         message: 'JS Framework?',
-        choices: ['Angular','React'],
+        choices: ['Angular','React','Vue'],
         default: 'Angular'
     },
     {

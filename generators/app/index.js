@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 module.exports = class extends Generator {
   
     initializing() {
-		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 1.7.3'));
+		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 2.0'));
 	}
   
   prompting() {
@@ -28,12 +28,7 @@ module.exports = class extends Generator {
 
 	writing() {
   
-		// for some reason the blu-generator mangles the copying of binary files
-		// so if this is a gradle build we need to recopy any JARs from the main
-		// app templates
-		this.fs.copy(this.templatePath('jetdb/*.*'),this.destinationPath('jetdb'));
-
-	    this.composeWith(require.resolve('../' + this.props.buildsys + '_common'),this.props);
+		this.composeWith(require.resolve('../' + this.props.buildsys + '_common'),this.props);
 
 	    var self = this;
 
@@ -45,12 +40,12 @@ module.exports = class extends Generator {
 			  	if (fpath.dirname.indexOf('src\\main\\ui') == 0) {
                     fpath.dirname = fpath.dirname.replace('src\\main\\ui', '.');
 				} else {
-                // bash?
-                if (fpath.dirname.indexOf('src/main/ui') == 0) {
-                fpath.dirname = fpath.dirname.replace('src/main/ui', '.');
-							}
+	                // bash?
+	                if (fpath.dirname.indexOf('src/main/ui') == 0) {
+	                    fpath.dirname = fpath.dirname.replace('src/main/ui', '.');
 					}
-					return path;
+				}
+				return path;
 			}));
 	    }
 

@@ -1,6 +1,6 @@
 {
   "name": "generator-jetray",
-  "version": "1.7.2",
+  "version": "2.0.0",
   "description": "JetRay Yeoman generator for Liferay 7/DXP portlets",
   "license": "MIT",
   "main": "app/index.js",

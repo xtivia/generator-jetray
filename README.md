@@ -1,5 +1,5 @@
 # Jetray
-Yeoman generator for React and Angular portlets on Liferay DXP
+Yeoman generator for React, Angular and (as of v2.0) Vue portlets on Liferay DXP
 
 [https://xtivia.github.io/generator-jetray](https://xtivia.github.io/generator-jetray)
 
@@ -14,9 +14,4 @@ TL;DR
 4. run 'gulp build' 
 
 5. when ready, run 'gulp deploy' to push to Liferay
-
-NOTE: beginning with version 1.6.0 Angular support has been migrated to Angular 4 and moves the UI-Router package to @uirouter/angular as well.
-
-For those not ready to move to Angular 4, the version that supports Angular 2 is still provided
-as a Git 1.5.1 tag here.
 

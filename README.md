@@ -1,5 +1,7 @@
 # Jetray
-Yeoman generator for React, Angular and (as of v2.0) Vue portlets on Liferay DXP
+Yeoman generator for React, Angular and (v2.0+) Vue portlets on Liferay DXP
+
+NOTE: As of v2.1, JetRay optionally supports using yarn as your package manager (instead of npm) for Javascript-centric (non-Gradle) builds.
 
 [https://xtivia.github.io/generator-jetray](https://xtivia.github.io/generator-jetray)
 
@@ -14,4 +16,6 @@ TL;DR
 4. run 'gulp build' 
 
 5. when ready, run 'gulp deploy' to push to Liferay
+
+6. Enjoy seeing your SPA portlet in Liferay
 

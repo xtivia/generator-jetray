@@ -48,8 +48,19 @@ module.exports = [
         name: 'buildsys',
         type: 'list',
         message: 'Primary build system?',
-        choices: ['npm','gradle'],
-        default: 'npm'
+        choices: ['npm/yarn','gradle'],
+        default: 'npm/yarn'
+    },
+    {
+        required: true,
+        name: 'packageManager',
+        type: 'list',
+        message: 'Package Manager',
+        default: 'npm',
+        choices: ['npm','yarn'],
+        when: function (response) {
+           return response.buildsys == 'npm/yarn';
+        }
     },
     {
         required: true,

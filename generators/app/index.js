@@ -28,7 +28,10 @@ module.exports = class extends Generator {
 
 	writing() {
   
+  	    // the following done to preserve historical nature of sub-generators only caring
+		// about buildsys being set to either "npm" or "gradle"
 		var generatorBase = (this.props.buildsys == "npm/yarn") ? "npm" : "gradle";
+        this.props.buildsys = generatorBase;  
 
 		this.composeWith(require.resolve('../' + generatorBase + '_common'),this.props);
 
@@ -36,7 +39,7 @@ module.exports = class extends Generator {
 
         // some wankiness since mem-fs move doesnt work very well. reassign base
 		// src files from src/main/ui to base destination when targeting npm
-        if (this.props.buildsys == 'npm/yarn') {
+        if (this.props.buildsys == 'npm') {
 			this.registerTransformStream(rename(function (fpath) {
                 // Windows?
 			  	if (fpath.dirname.indexOf('src\\main\\ui') == 0) {
@@ -59,14 +62,14 @@ module.exports = class extends Generator {
 	    // related to janky code above--even if we rename the files the original
 	    // gradle style directories (src/main/ui/...) are still around so we need to 
         // clean up those (empty) gradle-esque directories
-	    if (this.props.buildsys == 'npm/yarn') {
+	    if (this.props.buildsys == 'npm') {
             rimraf('./src/main', function (err) { 
 				 if (err) throw err; 
 			});
 		}
 
 		this.log("Initializing the project--this may take a few minutes...");
-	    if (this.props.buildsys == 'npm/yarn') {
+	    if (this.props.buildsys == 'npm') {
 			if (this.props.packageManager == 'npm') {
 			    this.npmInstall([],{ 'no-optional': true, "loglevel": "error" });
 			} else {

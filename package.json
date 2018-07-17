@@ -1,6 +1,6 @@
 {
   "name": "generator-jetray",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "JetRay Yeoman generator for Liferay 7/DXP portlets",
   "license": "MIT",
   "main": "app/index.js",
@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "blu-generator": "^0.1.1",
-    "gulp-rename": "^1.2.2",
+    "gulp-rename": "1.2.2",
     "rimraf": "^2.6.1",
     "yeoman-generator": "^1.1.1",
     "yosay": "^2.0.0"

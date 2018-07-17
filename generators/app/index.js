@@ -8,7 +8,7 @@ var rimraf = require('rimraf');
 module.exports = class extends Generator {
   
     initializing() {
-		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 2.0'));
+		this.log(yosay('Welcome to the JetRay portlet generator for \nLiferay DXP!\nVersion 2.1.1'));
 	}
   
   prompting() {
@@ -59,7 +59,7 @@ module.exports = class extends Generator {
 	    // related to janky code above--even if we rename the files the original
 	    // gradle style directories (src/main/ui/...) are still around so we need to 
         // clean up those (empty) gradle-esque directories
-	    if (this.props.buildsys == 'npm') {
+	    if (this.props.buildsys == 'npm/yarn') {
             rimraf('./src/main', function (err) { 
 				 if (err) throw err; 
 			});

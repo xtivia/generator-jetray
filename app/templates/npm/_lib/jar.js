@@ -95,8 +95,8 @@ module.exports = function (gulp, liferay_config) {
 	
 	return gulp.src(liferay_config.inputs)
 		.pipe(rename(function (path) {path.dirname = JAR_PREFIX + path.dirname;}))
-		.pipe(addsrc(['_liferay/*INF/**/*','_liferay/*content/**/*']))
-		//.pipe(replace({ patterns: [ {json: yo_options['generator-jetray'] }]}))
+		//.pipe(addsrc(['_liferay/*INF/**/*','_liferay/*content/**/*']))
+		.pipe(addsrc(['_liferay/**/*']))
 		.pipe(replace({ tokens: yo_options['generator-jetray'], prefix: '@@@', suffix: '@@@' }))
 		.pipe(through(function(file, enc, cb) {
 				  var f = path.parse(file.path);

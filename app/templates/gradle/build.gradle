@@ -36,6 +36,7 @@ def portletName = propsJson['generator-jetray'].portletName
 def portletTitle = propsJson['generator-jetray'].portletTitle
 def portletCategory = propsJson['generator-jetray'].portletCategory
 def downloadNode = propsJson['generator-jetray'].downloadNode
+def liferayHome = propsJson['generator-jetray'].liferayHome
 
 //potentially read a property as to whether ui buid is production or development
 //to invoke the production mode build, use "gradle build -Puimode=prod"
@@ -118,7 +119,10 @@ build.dependsOn(ui_builder_task)
 clean.dependsOn(gulp_clean)
 
 task deploy doFirst {
-    new Deployer().deploy(jar.archivePath,true)
+	copy {
+	  into("${liferayHome}/deploy") 
+	  from jar.archivePath
+	}
 }
 
 jar {

@@ -1,13 +1,13 @@
 {
   "name": "generator-jetray",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "JetRay Yeoman generator for Liferay 7/DXP portlets",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "xtivia/generator-jetray",
   "author": {
     "name": "Michael Freeman",
-    "email": "",
+    "email": "mfreeman@xtivia.com",
     "url": "https://github.com/xtivia/generator-jetray"
   },
   "scripts": {},
@@ -18,10 +18,11 @@
     "yeoman-generator"
   ],
   "dependencies": {
-    "blu-generator": "^0.1.1",
-    "gulp-rename": "1.2.2",
-    "rimraf": "^2.6.1",
-    "yeoman-generator": "^1.1.1",
-    "yosay": "^2.0.0"
+    "ejs": "^2.6.1",
+    "glob": "^7.1.4",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.3",
+    "yeoman-generator": "^4.0.0",
+    "yosay": "^2.0.2"
   }
 }

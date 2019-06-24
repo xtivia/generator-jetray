@@ -1,0 +1,54 @@
+{
+  "name": "<%=portletName%>",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Javascript Angular Portlet for Liferay 7/DXP",
+  "author": {
+    "name": "JetRay Tools"
+  },
+  "scripts": {
+    "clean": "gulp clean",
+    "compile": "gulp compile",
+    "build": "gulp build"
+  },
+  "dependencies": {
+    "@angular/common": "^4.1.0",
+    "@angular/compiler": "^4.1.0",
+    "@angular/core": "^4.1.0",
+    "@angular/forms": "^4.1.0",
+    "@angular/http": "^4.1.0",
+    "@angular/platform-browser": "^4.1.0",
+    "@angular/platform-browser-dynamic": "^4.1.0",
+    "@angular/router": "^4.1.0",
+    "@types/node": "^12.0.8",
+    "core-js": "^2.4.1",
+    "rxjs": "^5.1.1",
+    "@uirouter/angular": "^1.0.0-rc.2",
+    "zone.js": "^0.8.4"
+  },
+  "devDependencies": {
+      "@angular/compiler-cli": "^4.1.0",
+      "angular2-template-loader": "^0.6.2",
+      "gogo-shell": "^0.0.5",
+      "gulp": "^4.0.2",
+      "gulp-add-src": "^1.0.0",
+      "gulp-clean": "^0.3.2",
+      "gulp-rename": "^1.2.2",
+      "gulp-replace": "^1.0.0",
+      "gulp-token-replace": "^1.1.5",
+      "gulp-sequence": "^0.4.6",
+      "gulp-uglify": "^2.1.2",
+      "gulp-zip": "^3.2.0",
+      "ngc-webpack": "^1.2.0",<% if (sassSupport) { %>
+      "node-sass": "^4.7.2",<% } %>
+      "raw-loader": "^0.5.1",<% if (sassSupport) { %>
+      "sass-loader": "^6.0.6",<% } %>
+      "through2": "^2.0.1",
+      "ts-loader": "^2.0.2",
+      "typescript": "2.5.3",
+      "vinyl-named": "^1.1.0",
+      "webpack": "^2.3.0",
+      "webpack-stream": "^5.2.1",
+      "xml2js": "^0.4.17"
+  }
+}

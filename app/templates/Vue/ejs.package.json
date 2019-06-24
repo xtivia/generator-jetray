@@ -1,0 +1,39 @@
+{
+  "name": "<%=portletName%>",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vue Portlet for Liferay 7/DXP",
+  "author": {
+    "name": "JetRay Tools"
+  },
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "navigo": "^7.1.2",
+    "superagent": "5.0.9",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "css-loader": "^3.0.0",
+    "file-loader": "^1.1.4",
+    "gogo-shell": "^0.0.5",
+    "gulp": "^4.0.2",
+    "gulp-add-src": "^1.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-token-replace": "^1.1.5",
+    "gulp-sequence": "^0.4.6",
+    "gulp-uglify-es": "^1.0.4",
+    "gulp-zip": "^3.2.0",
+    "through2": "^2.0.1",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^2.3.0",
+    "webpack-stream": "^5.2.1",
+    "xml2js": "^0.4.17"
+  }
+}

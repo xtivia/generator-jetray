@@ -9,7 +9,7 @@ module.exports = function (gulp, liferay_config) {
 	  var jar_name = yo_options['generator-jetray'].portletName + '.jar';
 	  var destination = path.join(yo_options['generator-jetray'].liferayHome,'deploy')
 	  
-	  return gulp.src(path.join(liferay_config.dist,jar_name))
-
-		.pipe(gulp.dest(destination));
+	  return gulp
+	    .src(jar_name, { cwd: liferay_config.dist })
+	    .pipe(gulp.dest(destination));
 }}  

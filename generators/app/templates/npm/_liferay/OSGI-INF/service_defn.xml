@@ -5,6 +5,7 @@
     <provide interface="javax.portlet.Portlet"/>
   </service>
   <property name="javax.portlet.init-param.view-template" type="String" value="/view.jsp"/>
+  <property name="com.liferay.fragment.entry.processor.portlet.alias" value="@@@portletName@@@"/>
   <property name="javax.portlet.security-role-ref" type="String" value="power-user,user"/>
   <property name="javax.portlet.resource-bundle" type="String" value="content.Language"/>
   <property name="javax.portlet.init-param.template-path" type="String" value="/"/>

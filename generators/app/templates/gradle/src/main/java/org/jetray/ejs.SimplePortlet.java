@@ -11,7 +11,8 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"com.liferay.portlet.display-category=<%=portletCategory%>",
 		"javax.portlet.display-name=<%=portletTitle%>",
-        "javax.portlet.name=<%=portletName%>",
+		"javax.portlet.name=<%=portletName%>",
+		"com.liferay.fragment.entry.processor.portlet.alias=<%=portletName%>",
 		"com.liferay.portlet.instanceable=false",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/view.jsp",

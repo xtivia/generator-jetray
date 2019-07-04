@@ -1,5 +1,5 @@
 if (window.__react_runtime_loaded__) {
-  console.log("Bypassing injection of React framework runtime in portlet id=@@@portletName");
+  console.log("Bypassing injection of React framework runtime in portlet id=@@@portletName@@@");
 } else {
   window.__react_runtime_loaded__ = true;
   console.log("Injecting React framework runtime in portlet id=@@@portletName@@@");
